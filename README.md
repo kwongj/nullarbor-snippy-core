@@ -33,4 +33,5 @@ Please submit via the [GitHub issues page](https://github.com/kwongj/nullarbor-s
 [GPLv3](https://github.com/kwongj/nullarbor-snippy-core/blob/master/LICENCE)
 
 ##Links
-* [Prokka](https://github.com/tseemann/nullarbor)
+* [Nullarbor](https://github.com/tseemann/nullarbor)
+* [Snippy](https://github.com/tseemann/snippy)
