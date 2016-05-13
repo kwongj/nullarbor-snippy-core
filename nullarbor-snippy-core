@@ -1,0 +1,76 @@
+#!/bin/sh
+# Runs snippy-core on nullarbor folders
+
+#..............................................................................
+
+# Functions
+
+function msg
+{
+	echo -e "$*"
+}
+
+function err
+{
+	echo "ERROR: $*" 1>&2
+	exit 1
+}
+
+function usage
+{
+	msg "Name:\n  nullarbor-snippy-core"
+	msg "Author:\n  Jason Kwong <j.kwong1@student.unimelb.edu.au>"
+	msg "Usage:\n  nullarbor-snippy-core [options] <isolate1> <isolate2> ... <isolateN>"
+	msg "Parameters:"
+	msg "  <isolateN>   Isolates to be analysed - must have Nullarbor folder with same name"
+	msg "Options:"
+	msg "  -h           Show this help"
+	msg "  -n <dir>     Specify directory containing nullarbor output (default = current directory)"
+	msg "  -o <prefix>  Specify prefix for output (default = core)"
+	msg "  -r		    Include reference (default = no ref)"
+	exit 0
+}
+
+#..............................................................................
+
+# Set default options
+n="."
+o="core"
+
+# Options
+while getopts "hn:o:r" opt; do
+	case $opt in
+		h)
+			usage ;;
+		n)
+			n=$OPTARG ;;
+		o)
+			o=$OPTARG ;;
+		r)
+			r=1 ;;
+	esac
+done
+
+# skip over options to pass arguments
+shift $((OPTIND - 1))
+
+# read our mandatory positional parameters
+if [ $# -lt 1 ]; then
+	usage
+fi
+
+# check if nullarbor output directory exists
+[[ ! -d $n ]] && err "Unable to find nullarbor directory. Check path exists."
+
+#..............................................................................
+
+arr=()
+for f in $@ ;
+	do snpdir=$n/$f/$f
+	arr+=($snpdir)
+done
+if [[ r == 1 ]] ; then
+	snippy-core --prefix $o ${arr[@]}
+else
+	snippy-core --prefix $o --noref ${arr[@]}
+fi
