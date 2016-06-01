@@ -30,7 +30,7 @@ Please submit via the [GitHub issues page](https://github.com/kwongj/nullarbor-s
 
 ##Software Licence
 
-[GPLv3](https://github.com/kwongj/nullarbor-snippy-core/blob/master/LICENCE)
+[GPLv3](https://github.com/kwongj/nullarbor-snippy-core/blob/master/LICENSE)
 
 ##Links
 * [Nullarbor](https://github.com/tseemann/nullarbor)
